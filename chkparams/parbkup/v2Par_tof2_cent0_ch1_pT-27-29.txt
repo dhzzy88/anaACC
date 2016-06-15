@@ -1,0 +1,59 @@
+PIONS  | 	 idphi: 	0	 mean:	0	 mean err:	0	 width:	0	 width err: 	0	 yield:	0	 yield err:	0
+KAONS  | 	 idphi: 	0	 mean:	0.1	 mean err:	0.0113881	 width:	0.22	 width err: 	0.0053046	 yield:	709.224	 yield err:	2.22782
+PROTONS| 	 idphi: 	0	 mean:	0.863514	 mean err:	0.0139444	 width:	0.0429394	 width err: 	0.0138253	 yield:	562.66	 yield err:	2.08074
+
+PIONS  | 	 idphi: 	1	 mean:	0	 mean err:	0	 width:	0	 width err: 	0	 yield:	0	 yield err:	0
+KAONS  | 	 idphi: 	1	 mean:	0.1	 mean err:	0.00486901	 width:	0.196944	 width err: 	0.00764835	 yield:	665.479	 yield err:	2.28974
+PROTONS| 	 idphi: 	1	 mean:	0.881029	 mean err:	0.0141872	 width:	0.048999	 width err: 	0.0182198	 yield:	510.805	 yield err:	2.16893
+
+PIONS  | 	 idphi: 	2	 mean:	0	 mean err:	0	 width:	0	 width err: 	0	 yield:	0	 yield err:	0
+KAONS  | 	 idphi: 	2	 mean:	0.112544	 mean err:	0.00953578	 width:	0.2	 width err: 	0.00378216	 yield:	675.945	 yield err:	2.26154
+PROTONS| 	 idphi: 	2	 mean:	0.873308	 mean err:	0.0121942	 width:	0.019724	 width err: 	0.0139206	 yield:	506.785	 yield err:	1.97747
+
+PIONS  | 	 idphi: 	3	 mean:	0	 mean err:	0	 width:	0	 width err: 	0	 yield:	0	 yield err:	0
+KAONS  | 	 idphi: 	3	 mean:	0.1	 mean err:	0.0242139	 width:	0.2	 width err: 	0.000592804	 yield:	609.874	 yield err:	2.25744
+PROTONS| 	 idphi: 	3	 mean:	0.873213	 mean err:	0.0151356	 width:	0.0274209	 width err: 	0.0186774	 yield:	523.682	 yield err:	2.42325
+
+PIONS  | 	 idphi: 	4	 mean:	0	 mean err:	0	 width:	0	 width err: 	0	 yield:	0	 yield err:	0
+KAONS  | 	 idphi: 	4	 mean:	0.112964	 mean err:	0.0100756	 width:	0.2	 width err: 	0.0318533	 yield:	693.261	 yield err:	2.45191
+PROTONS| 	 idphi: 	4	 mean:	0.851947	 mean err:	0.0139526	 width:	0.0074648	 width err: 	0.0180183	 yield:	522.526	 yield err:	2.29952
+
+PIONS  | 	 idphi: 	5	 mean:	0	 mean err:	0	 width:	0	 width err: 	0	 yield:	0	 yield err:	0
+KAONS  | 	 idphi: 	5	 mean:	0.115521	 mean err:	0.00940994	 width:	0.2	 width err: 	0.0075107	 yield:	673.822	 yield err:	2.24186
+PROTONS| 	 idphi: 	5	 mean:	0.902654	 mean err:	0.0120792	 width:	0.0347777	 width err: 	0.0133392	 yield:	577.935	 yield err:	2.0304
+
+
+
+
+v2pion[] = 0.0607414; 		 v2pionerr[] = 0.680161;
+v2kaon[] = 0.0419278; 		 v2kaonerr[] = 0.00193572;
+v2prot[] = 0.0624679;		 v2proterr[] = 0.00228857;
+
+
+
+float ptrange[2] = {2.7,2.9};
+int ptbin = 11;
+int    Nrebin            = 4;
+int    kUseLogLowBins    = 0;
+int    twogausfit        = 1;
+int    threegausfit      = 0;
+float  protmeanvariance  = 0.05;
+float  protwidthvariance = 0.05;
+float  pionmeanrange[2]  = {-0.2,0.05};
+float  kaonmeanrange[2]  = {0.1,0.4};
+float  protmeanrange[2]  = {0.75,1};
+float  pionwidthrange[2] = {0.1,0.2};
+float  kaonwidthrange[2] = {0.03,0.2};
+float  protwidthrange[2] = {0.01,0.3};
+float  pionfitrange[2]   = {-0.1,0.3};
+float  kaonfitrange[2]   = {0,0.4};
+float  protfitrange[2]   = {0.75,1};
+float tunepionheight[6] = {1,1,1,1,1,1};
+float tunepionwidth[6]  = {1,1,1,1,1,1};
+float tunepionmean[6]   = {0,0,0,0,0,0};
+float tunekaonheight[6] = {1.1,1,1,1,1,1};
+float tunekaonwidth[6]  = {1.1,1,1,1,1,1};
+float tunekaonmean[6]   = {0,0,0,0,0,0};
+float tuneprotheight[6] = {1.1,1,1.05,0.85,1,1.15};
+float tuneprotwidth[6]  = {1.05,1,1,0.8,0.8,1.05};
+float tuneprotmean[6]   = {0,0,0,0,0,0};

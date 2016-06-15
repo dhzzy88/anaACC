@@ -55,6 +55,8 @@ void idTofAcc()
         c_nphot->cd(ptbin);
         gPad->SetLogz();
         gPad->SetLogy();
+        if(ptbin>12) h_nphotvsm2[icent][idphi][ptbin]->RebinX(2);
+        h_nphotvsm2[icent][idphi][ptbin]->GetXaxis()->SetRangeUser(-0.5,1.5);
         h_nphotvsm2[icent][idphi][ptbin]->Draw("colz");
         sprintf(titlestring,"N photoelectrons vs m2tof, %f < pT < %f; m2tof (GeV/c^2); N p.e.",ptbin*0.2+0.5,ptbin*0.2+0.2+0.5);
         l_accthresh = new TLine(-1,accthresh,5,accthresh);
@@ -70,11 +72,22 @@ void idTofAcc()
         c_compare->cd(ptbin);
         cstore->DrawClonePad();
       }
+    sprintf(titlestring,"PSgifs/acccompare_cent%i_dphi%i.gif",icent,idphi);
+    c_compare->SaveAs(titlestring);
+    sprintf(titlestring,"PSgifs/nphotvsm2_cent%i_dphi%i.gif",icent,idphi);  
+    c_nphot->SaveAs(titlestring);
     }
   }
-  c_nphot->SaveAs("nphotvsm2.gif");
-  c_compare->SaveAs("acccompare.jpg");
 
+  for(int idphi=0 ; idphi<=5 ; idphi++) {
+    dphi[idphi] = idphi*M_PI / 6 + M_PI/12;
+
+    parfile << "PIONS  | \t idphi: \t" << idphi << "\t mean:\t" << chkpionmean[idphi] << "\t mean err:\t" << chkpionmeanerr[idphi] << "\t width:\t" << chkpionwidth[idphi] << "\t width err: \t"<< chkpionwidtherr[idphi] << "\t yield:\t" << chkpionyield[idphi] << "\t yield err:\t" << chkpionyielderr[idphi] << endl;
+    parfile << "KAONS  | \t idphi: \t" << idphi << "\t mean:\t" << chkkaonmean[idphi] << "\t mean err:\t" << chkkaonmeanerr[idphi] << "\t width:\t" << chkkaonwidth[idphi] << "\t width err: \t"<< chkkaonwidtherr[idphi] << "\t yield:\t" << chkkaonyield[idphi] << "\t yield err:\t" << chkkaonyielderr[idphi] << endl;
+    parfile << "PROTONS| \t idphi: \t" << idphi << "\t mean:\t" << chkprotmean[idphi] << "\t mean err:\t" << chkprotmeanerr[idphi] << "\t width:\t" << chkprotwidth[idphi] << "\t width err: \t"<< chkprotwidtherr[idphi] << "\t yield:\t" << chkprotyield[idphi] << "\t yield err:\t" << chkprotyielderr[idphi] << endl;
+    parfile << endl;
+  }
+  parfile << endl << endl << endl;
 
 return;
 
@@ -264,6 +277,7 @@ TCanvas * trackSorter(TH2F *h2in, int accthreshold, int ptbin)
   cout << "pT bin: " << ptbin << " writing: " <<titlestring << endl;
   hboth->SetTitle(titlestring);
   hboth->Draw();
+  hboth->SetLineColor(kBlack);
   hveto->Draw("same");
   hveto->SetLineColor(kRed);
   hfire->Draw("same");
