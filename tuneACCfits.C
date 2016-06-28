@@ -237,7 +237,9 @@ float setACCthresh(int ptbin)
   float thresh=0;
   if(ptbin>=6)  thresh=3;
   if(ptbin>=8)  thresh=2;
-  if(ptbin>=10)  thresh=3;
+  if(ptbin==9)  thresh=3;
+  if(ptbin==10)  thresh=2;
+  if(ptbin==11)  thresh=4;
   if(ptbin==12)  thresh=2;
   if(ptbin>=13)  thresh=5;
   if(ptbin>=16)  thresh=2;

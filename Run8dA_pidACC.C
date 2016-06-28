@@ -641,36 +641,47 @@ TCanvas * fit_m2_2gaus(TH1D * h, int whichtof, int centbin, int charge, int idph
       //Individual Pions
       gPionYield[whichtof][charge][isig][centbin][idphi]->SetPoint(gPionYield[whichtof][charge][isig][centbin][idphi]->GetN(),pt,fun_pion->GetParameter(0)/h->GetBinWidth(0));
       gPionYield[whichtof][charge][isig][centbin][idphi]->SetPointError(gPionYield[whichtof][charge][isig][centbin][idphi]->GetN()-1,0,fun_pion->GetParError(0)/h->GetBinWidth(0));
-      double bc = h->Integral(h->FindBin(fun_pion->GetParameter(1)-fun_pion->GetParameter(2)*(1+isig)),
-            h->FindBin(fun_pion->GetParameter(1)+fun_pion->GetParameter(2)*(1+isig)));
+      //double bc = h->Integral(h->FindBin(fun_pion->GetParameter(1)-fun_pion->GetParameter(2)*(1+isig)),
+      //      h->FindBin(fun_pion->GetParameter(1)+fun_pion->GetParameter(2)*(1+isig)));
+      double bc = fun_pion->Integral(fun_pion->GetParameter(1)-fun_pion->GetParameter(2)*(1+isig),
+            fun_pion->GetParameter(1)+fun_pion->GetParameter(2)*(1+isig));
       gPionYieldBC[whichtof][charge][isig][centbin][idphi]->SetPoint(gPionYieldBC[whichtof][charge][isig][centbin][idphi]->GetN(),pt,bc);
       gPionYieldBC[whichtof][charge][isig][centbin][idphi]->SetPointError(gPionYieldBC[whichtof][charge][isig][centbin][idphi]->GetN()-1,0,sqrt(bc));
 
-      pionyield[isig+1] = bc;                                          pionyielderr[isig+1] = sqrt(bc);
+      //pionyield[isig+1] = bc;                                          pionyielderr[isig+1] = sqrt(bc);
+      pionyield[isig+1] = bc;                                          pionyielderr[isig+1] = fun_pion->GetParError(0);
       pionyield[0] = fun_pion->GetParameter(0)/h->GetBinWidth(0);      pionyielderr[0] = fun_pion->GetParError(0)/h->GetBinWidth(0);
 
       
       //Individual Kaons
       gKaonYield[whichtof][charge][isig][centbin][idphi]->SetPoint(gKaonYield[whichtof][charge][isig][centbin][idphi]->GetN(),pt,fun_kaon->GetParameter(0)/h->GetBinWidth(0));
       gKaonYield[whichtof][charge][isig][centbin][idphi]->SetPointError(gKaonYield[whichtof][charge][isig][centbin][idphi]->GetN()-1,0,fun_kaon->GetParError(0)/h->GetBinWidth(0));
-      bc = h->Integral(h->FindBin(fun_kaon->GetParameter(1)-fun_kaon->GetParameter(2)*(1+isig)),
-           h->FindBin(fun_kaon->GetParameter(1)+fun_kaon->GetParameter(2)*(1+isig)));
+      //bc = h->Integral(h->FindBin(fun_kaon->GetParameter(1)-fun_kaon->GetParameter(2)*(1+isig)),
+      //     h->FindBin(fun_kaon->GetParameter(1)+fun_kaon->GetParameter(2)*(1+isig)));
+      //cout << "compare these yields: " << bc << "\t";
+      bc = fun_kaon->Integral(h->GetXaxis()->GetBinLowEdge(h->GetXaxis()->FindBin(fun_kaon->GetParameter(1)-fun_kaon->GetParameter(2)*(1+isig))),
+           h->GetXaxis()->GetBinUpEdge(h->GetXaxis()->FindBin(fun_kaon->GetParameter(1)+fun_kaon->GetParameter(2)*(1+isig)))) / h->GetBinWidth(0);
+      //cout << bc << endl;
       gKaonYieldBC[whichtof][charge][isig][centbin][idphi]->SetPoint(gKaonYieldBC[whichtof][charge][isig][centbin][idphi]->GetN(),pt,bc);
       gKaonYieldBC[whichtof][charge][isig][centbin][idphi]->SetPointError(gKaonYieldBC[whichtof][charge][isig][centbin][idphi]->GetN()-1,0,sqrt(bc));
       
-      kaonyield[isig+1] = bc;                                          kaonyielderr[isig+1] = sqrt(bc);
+      //kaonyield[isig+1] = bc;                                          kaonyielderr[isig+1] = sqrt(bc);
+      kaonyield[isig+1] = bc;                                          kaonyielderr[isig+1] = fun_kaon->GetParError(0);
       kaonyield[0] = fun_kaon->GetParameter(0)/h->GetBinWidth(0);      kaonyielderr[0] = fun_kaon->GetParError(0)/h->GetBinWidth(0);
       
 
       //Individual Kaons
       gProtYield[whichtof][charge][isig][centbin][idphi]->SetPoint(gProtYield[whichtof][charge][isig][centbin][idphi]->GetN(),pt,fun_proton->GetParameter(0)/h->GetBinWidth(0));
       gProtYield[whichtof][charge][isig][centbin][idphi]->SetPointError(gProtYield[whichtof][charge][isig][centbin][idphi]->GetN()-1,0,fun_proton->GetParError(0)/h->GetBinWidth(0));
-      bc = h->Integral(h->FindBin(fun_proton->GetParameter(1)-fun_proton->GetParameter(2)*(1+isig)),
-           h->FindBin(fun_proton->GetParameter(1)+fun_proton->GetParameter(2)*(1+isig))); 
+      //bc = h->Integral(h->FindBin(fun_proton->GetParameter(1)-fun_proton->GetParameter(2)*(1+isig)),
+      //     h->FindBin(fun_proton->GetParameter(1)+fun_proton->GetParameter(2)*(1+isig))); 
+      bc = fun_proton->Integral(h->GetXaxis()->GetBinLowEdge(h->GetXaxis()->FindBin(fun_proton->GetParameter(1)-fun_proton->GetParameter(2)*(1+isig))),
+           h->GetXaxis()->GetBinUpEdge(h->GetXaxis()->FindBin(fun_proton->GetParameter(1)+fun_proton->GetParameter(2)*(1+isig)))) / h->GetBinWidth(0); 
       gProtYieldBC[whichtof][charge][isig][centbin][idphi]->SetPoint(gProtYieldBC[whichtof][charge][isig][centbin][idphi]->GetN(),pt,bc);
       gProtYieldBC[whichtof][charge][isig][centbin][idphi]->SetPointError(gProtYieldBC[whichtof][charge][isig][centbin][idphi]->GetN()-1,0,sqrt(bc));
 
-      protyield[isig+1] = bc;                                          protyielderr[isig+1] = sqrt(bc);
+      //protyield[isig+1] = bc;                                          protyielderr[isig+1] = sqrt(bc);
+      protyield[isig+1] = bc;                                          protyielderr[isig+1] = fun_proton->GetParError(0);
       protyield[0] = fun_proton->GetParameter(0)/h->GetBinWidth(0);    protyielderr[0] = fun_proton->GetParError(0)/h->GetBinWidth(0);
   
 
@@ -682,6 +693,7 @@ TCanvas * fit_m2_2gaus(TH1D * h, int whichtof, int centbin, int charge, int idph
       //ofstream fprotyield(fPar+whichtoflabel[whichtof]+"_"+fPart[2]+"_"+chargelabel[charge]+"_cent_"+centbinlabel[centbin][idphi]+"_sig_"+sigbin+"yields.dat");
 
     }
+
 
   
     gPionMass[whichtof][charge][centbin][idphi]->SetPoint(gPionMass[whichtof][charge][centbin][idphi]->GetN(),pt,fun_pion->GetParameter(1));
@@ -1643,7 +1655,8 @@ TCanvas * fit_m2_kprot(TH1D * h, int whichtof, int centbin, int charge, int idph
     fun->SetParameter(2,fun_kaon->GetParameter(2)); //sigma 
     fun->SetParameter(3,fun_proton->GetParameter(0));
     fun->SetParameter(4,fun_proton->GetParameter(1)); 
-    fun->SetParameter(5,fabs(fun_proton->GetParameter(2)-fun_kaon->GetParameter(2)));
+    //fun->SetParameter(5,fabs(fun_proton->GetParameter(2)-fun_kaon->GetParameter(2)));  //old
+    fun->SetParameter(5,tuneprotwidth[idphi]*fabs(fun_proton->GetParameter(2)-fun_kaon->GetParameter(2)));  //allows protons to be narrower than kaons
     //h->Fit("fun","RQBN+"); //unquiet this later
 
     for(int ipar=0 ; ipar<3 ; ipar++) {

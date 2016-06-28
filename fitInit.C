@@ -3,9 +3,9 @@ int useKProtfit = 1;
 int isSumW2 = 1;  //plot histo as  sumw2
 int hipTpeakfinder = 0; //combines all dphi bins to find peak of histos.
 
-int fixfBinWidthpion = 1; //fixes first bin width for consecutive bins
-int fixfBinWidthkaon = 0; //fixes first bin width for consecutive bins
-int fixfBinWidthprot = 0; //fixes first bin width for consecutive bins
+int fixfBinWidthpion = 0; //fixes first bin width for consecutive bins
+int fixfBinWidthkaon = 1; //fixes first bin width for consecutive bins
+int fixfBinWidthprot = 1; //fixes first bin width for consecutive bins
 
 int whichsig = 2; //how many sigma for yield plots
 float M_PI = 3.1415926;
@@ -14,8 +14,8 @@ float M_PI = 3.1415926;
 int drawDiagnosticFits = 1;
 
 int delPointPion = 0; //omit specific point from fit of v2, 0 means none, 1-6 are specific points
-int delPointKaon = 6; 
-int delPointProt = 3; 
+int delPointKaon = 0; 
+int delPointProt = 0; 
 float combindedfitrange[2] = {-0.4,1.4};
 /*
 int Nrebin = 2; //rebin N bins to one
@@ -95,65 +95,36 @@ int setTuning;
 int icent = 0;
 int ich=1;
 
-int fireACC = 0;
+int fireACC = 1;
 
-int itof=2;
+int itof=2; // keep as 2, fire ACC flag flags use of ACC 
 
-int ptbin = 14;
-
-float ptrange[2] = {3.3,3.5};
-int    Nrebin            = 5;
+float ptrange[2] = {2.3,2.5};
+int ptbin =9;
+int    Nrebin            = 2;
 int    kUseLogLowBins    = 0;
 int    twogausfit        = 1;
 int    threegausfit      = 0;
 float  protmeanvariance  = 0.05;
 float  protwidthvariance = 0.05;
-float  pionmeanrange[2]  = {-0.02,0.05};
-float  kaonmeanrange[2]  = {0.0,0.25};
-float  protmeanrange[2]  = {0.75,0.9};
-float  pionwidthrange[2] = {0.03,0.25};
-float  kaonwidthrange[2] = {0.01,0.3};
-float  protwidthrange[2] = {0.1,0.3};
-float  pionfitrange[2]   = {-0.4,0.15};
-float  kaonfitrange[2]   = {-0.2,0.4};
-float  protfitrange[2]   = {0.5,1.2};
-float tunepionheight[6] = {1,1,1,1,1,1};
-float tunepionwidth[6]  = {1,1,1,1,1,1};
-float tunepionmean[6]   = {0,0,0,0,0,0};
-float tunekaonheight[6] = {1.05,1.05,1,1.35,1,1};
-float tunekaonwidth[6]  = {1,1,1,1.2,1,1};
-float tunekaonmean[6]   = {0,0.05,0,0.05,0,0};
-float tuneprotheight[6] = {1.1,0.9,1,0.75,1,1};
-float tuneprotwidth[6]  = {1,0.9,1,0.7,1,0.9};
-float tuneprotmean[6]   = {0,0.1,0,0.15,0,0};
-
-/*
-float ptrange[2] = {3.3,3.5};
-int    Nrebin            = 5;
-int    kUseLogLowBins    = 0;
-int    twogausfit        = 1;
-int    threegausfit      = 0;
-float  protmeanvariance  = 0.05;
-float  protwidthvariance = 0.05;
-float  pionmeanrange[2]  = {-0.02,0.05};
-float  kaonmeanrange[2]  = {0.0,0.25};
-float  protmeanrange[2]  = {0.75,0.9};
-float  pionwidthrange[2] = {0.03,0.25};
-float  kaonwidthrange[2] = {0.01,0.3};
-float  protwidthrange[2] = {0.1,0.3};
-float  pionfitrange[2]   = {-0.4,0.15};
-float  kaonfitrange[2]   = {0.12,0.4};
-float  protfitrange[2]   = {0.7,1};
-float tunepionheight[6] = {1,1,1,1,1,1};
-float tunepionwidth[6]  = {1,1,1,1,1,1};
-float tunepionmean[6]   = {0,0,0,0,0,0};
-float tunekaonheight[6] = {1,1,1,1,1,1};
+float  pionmeanrange[2]  = {-0.1,0.05};
+float  kaonmeanrange[2]  = {0.2,0.3};
+float  protmeanrange[2]  = {0.8,0.9};
+float  pionwidthrange[2] = {0.05,0.2};
+float  kaonwidthrange[2] = {0.005,0.01};
+float  protwidthrange[2] = {0.005,0.1};
+float  pionfitrange[2]   = {-0.2,0.05};
+float  kaonfitrange[2]   = {0.1,0.3};
+float  protfitrange[2]   = {0.7,0.9};
+float tunepionheight[6] = {1.1,1.03,1,1.06,0.97,1.01};
+float tunepionwidth[6]  = {0.93,0.93,0.95,0.89,0.9,0.9};
+float tunepionmean[6]   = {0,0,0,0,-0.01,0};
+float tunekaonheight[6] = {0,0,0,0,0,0};
 float tunekaonwidth[6]  = {1,1,1,1,1,1};
 float tunekaonmean[6]   = {0,0,0,0,0,0};
-float tuneprotheight[6] = {1.1,0.8,0.7,0.7,1,1};
-float tuneprotwidth[6]  = {1,0.8,1,0.7,1,0.9};
-float tuneprotmean[6]   = {0,0.1,0,0.1,0,0};
-*/
+float tuneprotheight[6] = {1,1,1,1,1,1};
+float tuneprotwidth[6]  = {1,1,1,1,1,1};
+float tuneprotmean[6]   = {0,0,0,0,0,0};
 
 
 
