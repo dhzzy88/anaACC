@@ -34,7 +34,10 @@ TLine *l_accthresh;
 
 void tuneACCfits()
 {
-  float ptrange[2] = {0.5+ptbin*0.2,0.5+(ptbin+1)*0.2};
+  fitInit(itof,icent,ich,ptbin);
+  importfromStruct(fitTuning);
+  if(ptbin< 12) { float ptrange[2] = {0.5+ptbin*0.2,0.5+(ptbin+1)*0.2};        }
+  if(ptbin>=12) { float ptrange[2] = {3.0+(ptbin-12)*0.5,3.0+(ptbin-11)*0.5};  }
   char titlestring[128];
   if(fireACC == 0) {
     sprintf(titlestring,"chkparams/parbkup/v2Par_tof%i_cent%i_ch%i_pT-%g-%g.txt",itof,icent,ich,ptrange[0]*10,ptrange[1]*10);
@@ -47,8 +50,6 @@ void tuneACCfits()
   cout << "Writing v2 and fit parameters to: " << titlestring << endl;
   //ptrange[0] = ptbin*0.2;
   //ptrange[1] = (ptbin+1)*0.2;
-
-  fitInit(itof,icent,ich,ptrange);
 
   for(int idphi=0;idphi<=5;idphi++) {
     sprintf(titlestring,"c_accthresh%i",idphi);
@@ -97,7 +98,7 @@ void tuneACCfits()
   if(fireACC == 0) CheckFitsEP(itof, icent, ich, ptrange);
   if(fireACC == 1) CheckFitsEP(itof+1, icent, ich, ptrange);
 
-  TCanvas *c_PS = new TCanvas("c_PS","c_PS",3000,2000);
+  TCanvas *c_PS = new TCanvas("c_PS","c_PS",6000,4000);
   c_PS->Divide(3,2);
   for(int i=1;i<=6;i++) {
     c_PS->cd(i);
@@ -235,14 +236,23 @@ TCanvas * trackSorter(TH2F *h2in, int accthreshold, float ptrange[], int ich, in
 float setACCthresh(int ptbin)
 {
   float thresh=0;
-  if(ptbin>=6)  thresh=3;
-  if(ptbin>=8)  thresh=2;
-  if(ptbin==9)  thresh=3;
-  if(ptbin==10)  thresh=2;
-  if(ptbin==11)  thresh=4;
-  if(ptbin==12)  thresh=2;
-  if(ptbin>=13)  thresh=5;
-  if(ptbin>=16)  thresh=2;
+  if(ich == 1 && ptbin>=6)  thresh=3;
+  if(ich == 1 && ptbin>=8)  thresh=2;
+  if(ich == 1 && ptbin==9)  thresh=3;
+  if(ich == 1 && ptbin==10)  thresh=2;
+  if(ich == 1 && ptbin==11)  thresh=3;
+  if(ich == 1 && ptbin>=12)  thresh=3;
+  if(ich == 1 && ptbin>=13)  thresh=5;
+  if(ich == 1 && ptbin>=16)  thresh=2;  
+
+  if(ich == 0 && ptbin>=6)  thresh=3;
+  if(ich == 0 && ptbin>=8)  thresh=2;
+  if(ich == 0 && ptbin==9)  thresh=3;
+  if(ich == 0 && ptbin==10)  thresh=2;
+  if(ich == 0 && ptbin==11)  thresh=3;
+  if(ich == 0 && ptbin==12)  thresh=2;
+  if(ich == 0 && ptbin>=13)  thresh=5;
+  if(ich == 0 && ptbin>=16)  thresh=2;
 
   return thresh;
 }
