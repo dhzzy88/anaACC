@@ -38,6 +38,7 @@ void tuneACCfits()
   importfromStruct(fitTuning);
   if(ptbin< 12) { float ptrange[2] = {0.5+ptbin*0.2,0.5+(ptbin+1)*0.2};        }
   if(ptbin>=12) { float ptrange[2] = {3.0+(ptbin-12)*0.5,3.0+(ptbin-11)*0.5};  }
+  if(ptbin>=15) { float ptrange[2] = {4.5+(ptbin-15),4.5+(ptbin-14)};  }
   char titlestring[128];
   if(fireACC == 0) {
     sprintf(titlestring,"chkparams/parbkup/v2Par_tof%i_cent%i_ch%i_pT-%g-%g.txt",itof,icent,ich,ptrange[0]*10,ptrange[1]*10);
@@ -176,24 +177,24 @@ TCanvas * trackSorter(TH2F *h2in, int accthreshold, float ptrange[], int ich, in
   c_acccompare->cd(2);
   //gPad->SetLogy(kUseLogLowBins);
   sprintf(titlestring,"m^{2}_{TOF}, %g<pT<%g GeV/c; m^{2}_{TOF} (GeV/c^{2}); N",ptrange[0],ptrange[1]);
-  hboth->SetTitle(titlestring);
   cout << "pT bin: " << ptbin << " writing: " <<titlestring << endl;
   hboth->GetXaxis()->SetRangeUser(-0.5,1.5);
   hboth->Draw();
+  hboth->SetTitle(titlestring);
   //hboth->SetTitleSize(0.7,"a");
   hboth->SetLineColor(kBlack);
   //hboth->SetTitle(titlestring);
 
   if(fireACC == 0) {
+    sprintf(titlestring,"m^{2}_{TOF} ACC veto, %g<pT<%g GeV/c, idphi:%i; m^{2}_{TOF} (GeV/c^{2}); N",ptrange[0],ptrange[1],idphi);
+    hveto->SetTitle(titlestring);
     if(useKProtfit == 0) TCanvas *ctemp = (TCanvas*)fit_m2_2gaus(hveto, 2, icent, ich, idphi, ptrange)->Clone(); //TH1D * h, int whichtof, int centbin, int charge, int idphi, float ptrange[]
     if(useKProtfit == 1) TCanvas *ctemp = (TCanvas*)fit_m2_kprot(hveto, 2, icent, ich, idphi, ptrange)->Clone(); //TH1D * h, int whichtof, int centbin, int charge, int idphi, float ptrange[]
     cout << "done fitting" << endl;
     //writeFitTuning(2, icent, ich, ptrange); 
     ctemp->cd();
-    sprintf(titlestring,"m^{2}_{TOF} ACC veto, %g<pT<%g GeV/c, idphi:%i; m^{2}_{TOF} (GeV/c^{2}); N",ptrange[0],ptrange[1],idphi);
-    hveto->SetTitle(titlestring);
-    gStyle->SetTitleFontSize(0.6);   //hveto->SetTitleY(1);
     hveto->Draw("same");
+    gStyle->SetTitleFontSize(0.6);   //hveto->SetTitleY(1);
     hveto->SetLineColor(kRed);
     hveto->GetXaxis()->SetRangeUser(-0.5,1.5);
     l_pion->Draw("same");
@@ -206,12 +207,12 @@ TCanvas * trackSorter(TH2F *h2in, int accthreshold, float ptrange[], int ich, in
   }
 
   if(fireACC == 1) {
+    sprintf(titlestring,"m^{2}_{TOF} ACC fire, %g<pT<%g GeV/c; m^{2}_{TOF} (GeV/c^2); N",ptrange[0],ptrange[1]);
+    hfire->Draw("same");
     TCanvas *ctemp = (TCanvas*)fit_m2_2gaus(hfire, 3, icent, ich, idphi, ptrange)->Clone(); //TH1D * h, int whichtof, int centbin, int charge, int idphi, float ptrange[]
     //writeFitTuning(3, icent, ich, ptrange);
     ctemp->cd();
-    sprintf(titlestring,"m^{2}_{TOF} ACC fire, %g<pT<%g GeV/c; m^{2}_{TOF} (GeV/c^2); N",ptrange[0],ptrange[1]);
     hfire->SetTitle(titlestring);
-    hfire->Draw("same");
     gPad->SetLogy(kUseLogLowBins);
     hfire->SetLineColor(kBlue);
 

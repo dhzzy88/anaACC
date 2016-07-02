@@ -319,11 +319,11 @@ parstruct loadFitParamsPos(int ptbin) {
     float tunepionheight[6] = {1,1,1,1,1,1};
     float tunepionwidth[6]  = {1,1,1,1,1,1};
     float tunepionmean[6]   = {0,0,0,0,0,0};
-    float tunekaonheight[6] = {1,0.93,0.94,0.96,0.96,1};
-    float tunekaonwidth[6]  = {1.18,1.05,1.15,1.12,1,1.18};
+    float tunekaonheight[6] = {1,0.93,0.94,0.96,0.95,0.99};
+    float tunekaonwidth[6]  = {1.18,1.05,1.15,1.12,1,1.12};
     float tunekaonmean[6]   = {0.01,0.015,0.01,0.015,0.02,0.015};
-    float tuneprotheight[6] = {0.98,1.0,0.95,0.97,0.97,1};
-    float tuneprotwidth[6]  = {0.1,0.67,0.2,0.65,0.65,0.1};
+    float tuneprotheight[6] = {0.98,1.0,0.94,0.96,0.955,0.98};
+    float tuneprotwidth[6]  = {0.03,0.67,0.19,0.63,0.65,0.1};
     float tuneprotmean[6]   = {0,0,0,0.005,0,0};
   }
 
@@ -392,7 +392,7 @@ parstruct loadFitParamsPos(int ptbin) {
 
   if(ptbin ==11 && fireACC == 0) {
     cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
-    float ptrange[2] = {2.5,2.7};
+    float ptrange[2] = {2.7,2.9};
     int    Nrebin            = 8;
     int    kUseLogLowBins    = 0;
     int    twogausfit        = 1;
@@ -413,7 +413,7 @@ parstruct loadFitParamsPos(int ptbin) {
     float tunepionmean[6]   = {0.02,0.02,0.02,0.02,0.02,0.01};
 
     float tunekaonheight[6] = {1.1,1.02,1.03,1.07,1.05,1.05};
-    float tunekaonwidth[6]  = {1,0.95,1,1.03,0.98,0.95};
+    float tunekaonwidth[6]  = {1.02,0.95,1,1.03,0.98,0.95};
     float tunekaonmean[6]   = {0.01,-0.02,0.01,0,0.02,0.01};
     
     float tuneprotheight[6] = {0.95,0.9,0.9,0.75,0.85,0.96};
@@ -424,34 +424,157 @@ parstruct loadFitParamsPos(int ptbin) {
   if(ptbin ==12 && fireACC == 0) {
     cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
     float ptrange[2] = {3.0,3.5};
-    int    Nrebin            = 8;
+    int    Nrebin            = 5;
     int    kUseLogLowBins    = 0;
     int    twogausfit        = 1;
     int    threegausfit      = 0;
     float  protmeanvariance  = 0.05;
     float  protwidthvariance = 0.05;
     float  pionmeanrange[2]  = {-0.1,0.05};
-    float  kaonmeanrange[2]  = {0.1,0.3};
-    float  protmeanrange[2]  = {0.8,0.9};
+    float  kaonmeanrange[2]  = {0,0.2};
+    float  protmeanrange[2]  = {0.85,0.9};
     float  pionwidthrange[2] = {0.05,0.1};
-    float  kaonwidthrange[2] = {0.05,0.2};
-    float  protwidthrange[2] = {0.05,0.1};
-    float  pionfitrange[2]   = {-0.4,0.2};
+    float  kaonwidthrange[2] = {0.05,0.15};
+    float  protwidthrange[2] = {0.05,0.15};
+    float  pionfitrange[2]   = {-0.5,0.2};
     float  kaonfitrange[2]   = {-0.4,0.4};
     float  protfitrange[2]   = {0.6,1.2};
     //float tunepionheight[6] = {1.15,1.15,1.08,1.12,1.08,1.12};
     //float tunepionwidth[6]  = {1,1.02,1.02.02,1.02,1.02,1.05};
     //float tunepionmean[6]   = {0.02,0.02,0.02,0.02,0.02,0.01};
 
-    float tunekaonheight[6] = {1,1,1,1,1,1};
-    float tunekaonwidth[6]  = {1,1,1,1,1,1};
-    float tunekaonmean[6]   = {0,0,0,0,0,0};
+    float tunekaonheight[6] = {1.18,1.1,1.21,1.3,1.23,1.16};
+    float tunekaonwidth[6]  = {1.4,1.25,1.4,1.5,1.4,1.25};
+    float tunekaonmean[6]   = {-0.02,0,0.02,-0.1,0,0};
     
-    float tuneprotheight[6] = {1,1,1,1,1,1};
-    float tuneprotwidth[6]  = {1,1,1,1,1,1};
-    float tuneprotmean[6]   = {0,0,0,0,0,0};
+    float tuneprotheight[6] = {1.05,1.03,1.06,1.05,1.12,1.0};
+    float tuneprotwidth[6]  = {1.1,1,1,1.1,1.2,1.1};
+    float tuneprotmean[6]   = {0.01,0,0.01,0,0.01,0};
+  }
+
+  if(ptbin ==13 && fireACC == 0) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {3.5,4.0};
+    int    Nrebin            = 5;
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,0.05};
+    float  kaonmeanrange[2]  = {0,0.2};
+    float  protmeanrange[2]  = {0.85,0.9};
+    float  pionwidthrange[2] = {0.05,0.1};
+    float  kaonwidthrange[2] = {0.05,0.15};
+    float  protwidthrange[2] = {0.05,0.15};
+    float  pionfitrange[2]   = {-0.5,0.2};
+    float  kaonfitrange[2]   = {-0.4,0.4};
+    float  protfitrange[2]   = {0.6,1.2};
+    //float tunepionheight[6] = {1.15,1.15,1.08,1.12,1.08,1.12};
+    //float tunepionwidth[6]  = {1,1.02,1.02.02,1.02,1.02,1.05};
+    //float tunepionmean[6]   = {0.02,0.02,0.02,0.02,0.02,0.01};
+
+    float tunekaonheight[6] = {1.3,1.39,1.32,1.39,1.23,1.24};
+    float tunekaonwidth[6]  = {1.7,1.6,1.7,1.7,1.5,1.55};
+    float tunekaonmean[6]   = {-0.04,0.07,0.02,-0.05,-0.05,0.01};
+    
+    float tuneprotheight[6] = {1.2,1,1.09,1.1,1.15,1.03};
+    float tuneprotwidth[6]  = {1.4,1.2,0.1,-0.05,1.3,-0.05};
+    float tuneprotmean[6]   = {0.01,0,0.02,0,0.0,0};
+  }  
+  
+  if(ptbin ==14 && fireACC == 0) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {4.0,4.5};
+    int    Nrebin            = 4;
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,0.05};
+    float  kaonmeanrange[2]  = {0,0.2};
+    float  protmeanrange[2]  = {0.85,0.9};
+    float  pionwidthrange[2] = {0.05,0.1};
+    float  kaonwidthrange[2] = {0.05,0.15};
+    float  protwidthrange[2] = {0.05,0.15};
+    float  pionfitrange[2]   = {-0.5,0.2};
+    float  kaonfitrange[2]   = {-0.4,0.4};
+    float  protfitrange[2]   = {0.6,1.2};
+    //float tunepionheight[6] = {1.15,1.15,1.08,1.12,1.08,1.12};
+    //float tunepionwidth[6]  = {1,1.02,1.02.02,1.02,1.02,1.05};
+    //float tunepionmean[6]   = {0.02,0.02,0.02,0.02,0.02,0.01};
+
+    float tunekaonheight[6] = {1.4,1.4,1.45,1.4,1.3,1.6};
+    float tunekaonwidth[6]  = {1.8,1.8,1.85,1.7,1.8,1.8};
+    float tunekaonmean[6]   = {0.06,0.05,0.05,-0.05,0.05,-0.12};
+    
+    float tuneprotheight[6] = {1.12,1,1.5,0.98,1.35,1.18};
+    float tuneprotwidth[6]  = {-0.02,-0.02,1.8,-0.15,1.2,1.6};
+    float tuneprotmean[6]   = {0.1,0.03,0.08,0.05,0.1,-0.02};
   }
   
+  if(ptbin ==15 && fireACC == 0) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {4.5,5.5};
+    int    Nrebin            = 4;
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,0.05};
+    float  kaonmeanrange[2]  = {0,0.2};
+    float  protmeanrange[2]  = {0.85,0.9};
+    float  pionwidthrange[2] = {0.05,0.1};
+    float  kaonwidthrange[2] = {0.05,0.15};
+    float  protwidthrange[2] = {0.05,0.15};
+    float  pionfitrange[2]   = {-0.5,0.2};
+    float  kaonfitrange[2]   = {-0.4,0.4};
+    float  protfitrange[2]   = {0.6,1.2};
+    //float tunepionheight[6] = {1.15,1.15,1.08,1.12,1.08,1.12};
+    //float tunepionwidth[6]  = {1,1.02,1.02.02,1.02,1.02,1.05};
+    //float tunepionmean[6]   = {0.02,0.02,0.02,0.02,0.02,0.01};
+
+    float tunekaonheight[6] = {1.3,1.39,1.32,1.39,1.23,1.24};
+    float tunekaonwidth[6]  = {1.7,1.6,1.7,1.7,1.5,1.55};
+    float tunekaonmean[6]   = {-0.04,0.07,0.02,-0.05,-0.05,0.01};
+    
+    float tuneprotheight[6] = {1.2,1,1.09,1.1,1.15,1.03};
+    float tuneprotwidth[6]  = {1.4,1.2,0.1,-0.05,1.3,-0.05};
+    float tuneprotmean[6]   = {0.01,0,0.02,0,0.0,0};
+  }
+
+  if(ptbin ==16 && fireACC == 0) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {5.5,6.5};
+    int    Nrebin            = 4;
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,0.05};
+    float  kaonmeanrange[2]  = {0,0.2};
+    float  protmeanrange[2]  = {0.85,0.9};
+    float  pionwidthrange[2] = {0.05,0.1};
+    float  kaonwidthrange[2] = {0.05,0.15};
+    float  protwidthrange[2] = {0.05,0.15};
+    float  pionfitrange[2]   = {-0.5,0.2};
+    float  kaonfitrange[2]   = {-0.4,0.4};
+    float  protfitrange[2]   = {0.6,1.2};
+    //float tunepionheight[6] = {1.15,1.15,1.08,1.12,1.08,1.12};
+    //float tunepionwidth[6]  = {1,1.02,1.02.02,1.02,1.02,1.05};
+    //float tunepionmean[6]   = {0.02,0.02,0.02,0.02,0.02,0.01};
+
+    float tunekaonheight[6] = {1.3,1.39,1.32,1.39,1.23,1.24};
+    float tunekaonwidth[6]  = {1.7,1.6,1.7,1.7,1.5,1.55};
+    float tunekaonmean[6]   = {-0.04,0.07,0.02,-0.05,-0.05,0.01};
+    
+    float tuneprotheight[6] = {1.2,1,1.09,1.1,1.15,1.03};
+    float tuneprotwidth[6]  = {1.4,1.2,0.1,-0.05,1.3,-0.05};
+    float tuneprotmean[6]   = {0.01,0,0.02,0,0.0,0};
+  } 
 
   if(ptbin == 8 && fireACC ==1) {
     cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
@@ -550,6 +673,121 @@ parstruct loadFitParamsPos(int ptbin) {
     float tunepionheight[6] = {1.06,0.98,1.04,1.02,1.02,0.98};
     float tunepionwidth[6]  = {1.02,0.93,0.97,0.97,0.95,0.92};
     float tunepionmean[6]   = {0.01,0,0,0,0,0};
+  }
+
+  if(ptbin == 12 && fireACC ==1) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {3.0,3.5};
+    int    Nrebin            = 8,
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,0.05};
+    float  kaonmeanrange[2]  = {0.2,0.3};
+    float  protmeanrange[2]  = {0.8,0.9};
+    float  pionwidthrange[2] = {0.05,0.2};
+    float  kaonwidthrange[2] = {0.005,0.01};
+    float  protwidthrange[2] = {0.005,0.1};
+    float  pionfitrange[2]   = {-0.2,0.05};
+    float  kaonfitrange[2]   = {0.1,0.3};
+    float  protfitrange[2]   = {0.7,0.9};
+    float tunepionheight[6] = {1.16,1.14,1.03,1.1,1.12,1.2};
+    float tunepionwidth[6]  = {1.17,1.1,1,1.1,1.15,1.2};
+    float tunepionmean[6]   = {0.02,0.05,0.02,0.02,0.01,0.03};
+  }
+  
+  if(ptbin == 13 && fireACC ==1) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {3.5,4.0};
+    int    Nrebin            = 5,
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,-0.05};
+    float  kaonmeanrange[2]  = {0.2,0.3};
+    float  protmeanrange[2]  = {0.8,0.9};
+    float  pionwidthrange[2] = {0.1,0.2};
+    float  kaonwidthrange[2] = {0.005,0.01};
+    float  protwidthrange[2] = {0.005,0.1};
+    float  pionfitrange[2]   = {-0.5,0.5};
+    float  kaonfitrange[2]   = {0.1,0.3};
+    float  protfitrange[2]   = {0.7,0.9};
+    float tunepionheight[6] = {1.1,1.2,1.35,1.33,1.2,1.35};
+    float tunepionwidth[6]  = {1.02,1.07,1.05,1.08,1,1.05};
+    float tunepionmean[6]   = {0.02,0.02,0.07,0.07,0.05,0.05};
+  }
+
+  if(ptbin == 14 && fireACC ==1) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {4.0,4.5};
+    int    Nrebin            = 5,
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,-0.05};
+    float  kaonmeanrange[2]  = {0.2,0.3};
+    float  protmeanrange[2]  = {0.8,0.9};
+    float  pionwidthrange[2] = {0.1,0.2};
+    float  kaonwidthrange[2] = {0.005,0.01};
+    float  protwidthrange[2] = {0.005,0.1};
+    float  pionfitrange[2]   = {-0.5,0.2};
+    float  kaonfitrange[2]   = {0.1,0.3};
+    float  protfitrange[2]   = {0.7,0.9};
+    float tunepionheight[6] = {1.31,1.32,1.37,1.29,1.3,1.62};
+    float tunepionwidth[6]  = {1.05,1.0,1.18,1.25,1.15,1.05};
+    float tunepionmean[6]   = {0.06,0.02,0.05,0.0,0.045,0.03};
+  }
+
+  if(ptbin == 15 && fireACC ==1) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {4.5,5.5};
+    int    Nrebin            = 5,
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,-0.05};
+    float  kaonmeanrange[2]  = {0.2,0.3};
+    float  protmeanrange[2]  = {0.8,0.9};
+    float  pionwidthrange[2] = {0.1,0.2};
+    float  kaonwidthrange[2] = {0.005,0.01};
+    float  protwidthrange[2] = {0.005,0.1};
+    float  pionfitrange[2]   = {-0.5,0.5};
+    float  kaonfitrange[2]   = {0.1,0.3};
+    float  protfitrange[2]   = {0.7,0.9};
+    float tunepionheight[6] = {1.1,1.2,1.35,1.33,1.2,1.35};
+    float tunepionwidth[6]  = {1.02,1.07,1.05,1.08,1,1.05};
+    float tunepionmean[6]   = {0.02,0.02,0.07,0.07,0.05,0.05};
+  }
+
+  if(ptbin == 16 && fireACC ==1) {
+    cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << "..." << endl;
+    float ptrange[2] = {5.5,6.5};
+    int    Nrebin            = 5,
+    int    kUseLogLowBins    = 0;
+    int    twogausfit        = 1;
+    int    threegausfit      = 0;
+    float  protmeanvariance  = 0.05;
+    float  protwidthvariance = 0.05;
+    float  pionmeanrange[2]  = {-0.1,-0.05};
+    float  kaonmeanrange[2]  = {0.2,0.3};
+    float  protmeanrange[2]  = {0.8,0.9};
+    float  pionwidthrange[2] = {0.1,0.2};
+    float  kaonwidthrange[2] = {0.005,0.01};
+    float  protwidthrange[2] = {0.005,0.1};
+    float  pionfitrange[2]   = {-0.5,0.5};
+    float  kaonfitrange[2]   = {0.1,0.3};
+    float  protfitrange[2]   = {0.7,0.9};
+    float tunepionheight[6] = {1.1,1.2,1.35,1.33,1.2,1.35};
+    float tunepionwidth[6]  = {1.02,1.07,1.05,1.08,1,1.05};
+    float tunepionmean[6]   = {0.02,0.02,0.07,0.07,0.05,0.05};
   }
 
   fitTuning.Nrebin = Nrebin;           

@@ -93,6 +93,7 @@ void findPeakCenter_hipT(TH2D * h2in, int itof, int icent, int ich, float ptrang
   //cout << h->GetNbinsX() << endl;
   if(Nrebin % ht->GetNbinsX != 0) {	
   	cout << "can't rebin this, Nrebin not divisible by " << ht->GetNbinsX << "!!!" << endl;
+
   	return;
   }
   h = (TH1D *) ht->Rebin(Nrebin,"h");
@@ -424,10 +425,12 @@ TCanvas * fit_m2_2gaus(TH1D * h, int whichtof, int centbin, int charge, int idph
   fun_pion->SetLineColor(kCyan+1);
   fun_kaon->SetLineColor(kCyan+2);
   fun_proton->SetLineColor(kCyan+3);
+  fun->SetLineWidth(kFunWidth);
 
   c_h->SetLogy(kUseLogLowBins); 
-
-  h->Draw(); gPad->Update();
+  h->SetFillColor(16);
+  
+  h->Draw("E4"); gPad->Update();
   float pionhpeak = findpeak(h,-0.1,0.1);
   float kaonhpeak = findpeak(h,0.2,0.3);
   float prothpeak = findpeak(h,0.7,1.2);
@@ -1527,7 +1530,9 @@ TCanvas * fit_m2_kprot(TH1D * h, int whichtof, int centbin, int charge, int idph
 
   c_h->SetLogy(kUseLogLowBins); 
 
-  h->Draw(); gPad->Update();
+  fun->SetLineWidth(kFunWidth);
+  h->SetFillColor(16);
+  h->Draw("E4"); gPad->Update();
   float pionhpeak = findpeak(h,-0.1,0.1);
   float kaonhpeak = findpeak(h,0.2,0.3);
   float prothpeak = findpeak(h,0.7,1.2);
