@@ -16,8 +16,8 @@ float pt;
 // Fit Function Definitions
 ///////////////////////////
 TF1 *polybg = new TF1("polybg","[0] + [1]*x + [2]*x*x",-0.4,1.4);
-TF1 *fun1 =new TF1("fun1","[0]/[2]*exp(-0.5*pow((x-[1])/[2],2))/sqrt(6.283)",-0.2,0.1);   // pion
-TF1 *fun2 =new TF1("fun2","[0]/[2]*exp(-0.5*pow((x-[1])/[2],2))/sqrt(6.283)",0.2,0.4);    // kaon
+TF1 *fun1 =new TF1("fun1","[0]/[2]*exp(-0.5*pow((x-[1])/[2],2))/sqrt(6.283)",-0.2,1.4);   // pion
+TF1 *fun2 =new TF1("fun2","[0]/[2]*exp(-0.5*pow((x-[1])/[2],2))/sqrt(6.283)",-0.2,1.4);    // kaon
 
 TF1 *fun     =new TF1("fun"    ,"[0]/[2]*exp(-0.5*pow((x-[1])/[2],2))/sqrt(6.283)+[3]/([2]+[5])*exp(-0.5*pow((x-[4])/([2]+[5]),2))/sqrt(6.283)",-0.4,1.4);// pion+kaon
 //TF1 *fun = new TF1("fun","fun1+fun2",-0.4,0.6);

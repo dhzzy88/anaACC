@@ -33,7 +33,7 @@ void idTofAcc()
   TList *rawlist = new TList; 
   TList *flslist = new TList; 
   TList *trulist = new TList; 
- 
+
   char getHistName[256];
   
   c_nphot = new TCanvas("c_nphot","c_nphot",4000,4000);
@@ -52,6 +52,7 @@ void idTofAcc()
         float accthresh = setACCthresh(ptbin);
         sprintf(getHistName,"h_m2tofvsacc_icent%i_idphi%i_pt%i",icent,idphi,ptbin);
         h_nphotvsm2[icent][idphi][ptbin] = (TH2F*)inFile.Get(getHistName);
+
         c_nphot->cd(ptbin);
         gPad->SetLogz();
         gPad->SetLogy();
@@ -72,15 +73,31 @@ void idTofAcc()
         c_compare->cd(ptbin);
         cstore->DrawClonePad();
       }
+
+
     sprintf(titlestring,"PSgifs/acccompare_cent%i_dphi%i.gif",icent,idphi);
     c_compare->SaveAs(titlestring);
     sprintf(titlestring,"PSgifs/nphotvsm2_cent%i_dphi%i.gif",icent,idphi);  
     c_nphot->SaveAs(titlestring);
     }
+    
+    TH2F *h_nphotvsm2all;
+    TH2F *h_nphotvsm2all = ( TH2F *)h_nphotvsm2[0][0][17]->Clone("h_nphotvsm2all");
+    h_nphotvsm2all->Add(h_nphotvsm2[0][1][17],1);
+    h_nphotvsm2all->Add(h_nphotvsm2[0][2][17],1);
+    h_nphotvsm2all->Add(h_nphotvsm2[0][3][17],1);
+    h_nphotvsm2all->Add(h_nphotvsm2[0][4][17],1);
+    h_nphotvsm2all->Add(h_nphotvsm2[0][5][17],1);
+    c_all = new TCanvas("c_all", "c_all", 2000,2000);
+    c_all->cd();
+    h_nphotvsm2all->Draw("colz");
+    c_all->SetLogy();
+    c_all->SetLogz();
+    c_all->SaveAs("nphotvsm2_cent0_all.gif");
   }
 
   for(int idphi=0 ; idphi<=5 ; idphi++) {
-    dphi[idphi] = idphi*M_PI / 6 + M_PI/12;
+    //idphi[idphi] = idphi*M_PI / 6 + M_PI/12;
 
     parfile << "PIONS  | \t idphi: \t" << idphi << "\t mean:\t" << chkpionmean[idphi] << "\t mean err:\t" << chkpionmeanerr[idphi] << "\t width:\t" << chkpionwidth[idphi] << "\t width err: \t"<< chkpionwidtherr[idphi] << "\t yield:\t" << chkpionyield[idphi] << "\t yield err:\t" << chkpionyielderr[idphi] << endl;
     parfile << "KAONS  | \t idphi: \t" << idphi << "\t mean:\t" << chkkaonmean[idphi] << "\t mean err:\t" << chkkaonmeanerr[idphi] << "\t width:\t" << chkkaonwidth[idphi] << "\t width err: \t"<< chkkaonwidtherr[idphi] << "\t yield:\t" << chkkaonyield[idphi] << "\t yield err:\t" << chkkaonyielderr[idphi] << endl;

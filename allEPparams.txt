@@ -1,0 +1,16 @@
+3.5-4.0 fire neg
+all EP pion mean: -0.00461841 +/- 0.0049242
+all EP pion width: 0.176268   +/- 0.00490198
+all EP kaon mean:  0.119047   +/- 0.00993955
+all EP kaon width: 0.198804   +/- 0.00832332
+all EP prot mean:  0.863529   +/- 0.143046
+all EP prot width: 0.126285   +/- 1.68164
+
+
+3.5-4.0 veto pos
+all EP pion mean: -0.0204344 +/- 0.00640688
+all EP pion width: 0.156231  +/- 0.00846555
+all EP kaon mean:  0.168138  +/- 0.00625064
+all EP kaon width: 0.176722  +/- 0.00953653
+all EP prot mean:  0.849773  +/- 0.103674
+all EP prot width: 0.0832996 +/- 1.38905

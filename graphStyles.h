@@ -4,7 +4,7 @@ int MeanMarkerSize = 2;
 int WidthMarkerSize = 2;
 int YieldMarkerSize = 2;
 
-float m2histMarkerSize = 5;
+float m2histMarkerSize = 2;
 
 int pioncolor = 3; //set universal color for markers and lines denoting particle species
 int kaoncolor = 4;
