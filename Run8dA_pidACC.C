@@ -252,17 +252,17 @@ void CheckFitsEP(int itof, int icent, int ich, float ptrange[])
   sprintf(titlestring,"Fit Mean (GeV/c^{2}), %g<pT<%g",ptrange[0],ptrange[1]);
   drawFrame(0,-0.2,3.5,1.1,"d#phi","Mean (GeV/c^2)");
   drawTitle(.1,-.07,titlestring+lcomma+tofstring+lcomma+centbinlabel[icent+1]+centrality+lcomma+chargelabel[ich]+tracks,1,12,.03,0);
-  gr_pionmass->SetMarkerSize(MeanMarkerSize);	gr_pionmass->SetMarkerStyle(21);    gr_pionmass->SetMarkerColor(pioncolor);   gr_pionmass->Draw("P");
-  gr_kaonmass->SetMarkerSize(MeanMarkerSize);	gr_kaonmass->SetMarkerStyle(21);    gr_kaonmass->SetMarkerColor(kaoncolor);   gr_kaonmass->Draw("P");
-  gr_protmass->SetMarkerSize(MeanMarkerSize);	gr_protmass->SetMarkerStyle(21);    gr_protmass->SetMarkerColor(protcolor);   gr_protmass->Draw("P");
+  if(fireACC==1) { gr_pionmass->SetMarkerSize(MeanMarkerSize);	gr_pionmass->SetMarkerStyle(21);    gr_pionmass->SetMarkerColor(pioncolor);   gr_pionmass->Draw("P"); }
+  if(fireACC==0) { gr_kaonmass->SetMarkerSize(MeanMarkerSize);	gr_kaonmass->SetMarkerStyle(21);    gr_kaonmass->SetMarkerColor(kaoncolor);   gr_kaonmass->Draw("P"); }
+  if(fireACC==0) { gr_protmass->SetMarkerSize(MeanMarkerSize);	gr_protmass->SetMarkerStyle(21);    gr_protmass->SetMarkerColor(protcolor);   gr_protmass->Draw("P"); }
 
   sprintf(titlestring,"Fit Width (GeV/c^{2}), %g<pT<%g",ptrange[0],ptrange[1]);
   c_top->cd(2);  
   drawFrame(0,-0.2,3.5,0.9,"d#phi","width (GeV/c^2)");
   drawTitle(.1,-.07,titlestring+lcomma+tofstring+lcomma+centbinlabel[icent+1]+centrality+lcomma+chargelabel[ich]+tracks,1,12,.03,0);
-  gr_pionwidth->SetMarkerSize(WidthMarkerSize);  gr_pionwidth->SetMarkerStyle(21);    gr_pionwidth->SetMarkerColor(pioncolor);   gr_pionwidth->Draw("P");
-  gr_kaonwidth->SetMarkerSize(WidthMarkerSize);  gr_kaonwidth->SetMarkerStyle(21);    gr_kaonwidth->SetMarkerColor(kaoncolor);   gr_kaonwidth->Draw("P");
-  gr_protwidth->SetMarkerSize(WidthMarkerSize);  gr_protwidth->SetMarkerStyle(21);    gr_protwidth->SetMarkerColor(protcolor);   gr_protwidth->Draw("P");
+  if(fireACC==1) { gr_pionwidth->SetMarkerSize(WidthMarkerSize);  gr_pionwidth->SetMarkerStyle(21);    gr_pionwidth->SetMarkerColor(pioncolor);   gr_pionwidth->Draw("P"); }
+  if(fireACC==0) { gr_kaonwidth->SetMarkerSize(WidthMarkerSize);  gr_kaonwidth->SetMarkerStyle(21);    gr_kaonwidth->SetMarkerColor(kaoncolor);   gr_kaonwidth->Draw("P"); }
+  if(fireACC==0) { gr_protwidth->SetMarkerSize(WidthMarkerSize);  gr_protwidth->SetMarkerStyle(21);    gr_protwidth->SetMarkerColor(protcolor);   gr_protwidth->Draw("P"); }
 
   sprintf(titlestring,"chkparams/fitMassWidth_tof%i_cent%i_ch%i_pT-%g-%g.jpg",itof,icent,ich,ptrange[0]*10,ptrange[1]*10);
   //c_top->SaveAs(titlestring);
@@ -277,7 +277,7 @@ void CheckFitsEP(int itof, int icent, int ich, float ptrange[])
   sprintf(titlestring,"Pion Yield (GeV/c^{2}), %g<pT<%g",ptrange[0],ptrange[1]);
   drawTitle(.1,-.07,titlestring+lcomma+tofstring+lcomma+centbinlabel[icent+1]+centrality+lcomma+chargelabel[ich]+tracks,1,12,.03,0);
   if(delPointPion>0) gr_pionyield->RemovePoint(delPointPion-1);
-  gr_pionyield->SetMarkerSize(YieldMarkerSize); gr_pionyield->SetMarkerStyle(21);   gr_pionyield->SetMarkerColor(pioncolor);    gr_pionyield->Draw("P");
+  if(fireACC==1) { gr_pionyield->SetMarkerSize(YieldMarkerSize); gr_pionyield->SetMarkerStyle(21);   gr_pionyield->SetMarkerColor(pioncolor);    gr_pionyield->Draw("P"); }
   v2fit->SetLineColor(pioncolor);	v2fit->SetLineWidth(4);
   gr_pionyield->Fit("v2fit","Q","",0.05,M_PI-0.05);
   gStyle->SetOptFit();
@@ -293,7 +293,7 @@ void CheckFitsEP(int itof, int icent, int ich, float ptrange[])
   sprintf(titlestring,"Kaon Yield (GeV/c^{2}), %g<pT<%g",ptrange[0],ptrange[1]);
   drawTitle(.1,-.07,titlestring+lcomma+tofstring+lcomma+centbinlabel[icent+1]+centrality+lcomma+chargelabel[ich]+tracks,1,12,.03,0);
   if(delPointKaon>0) gr_kaonyield->RemovePoint(delPointKaon-1);
-  gr_kaonyield->SetMarkerSize(YieldMarkerSize); gr_kaonyield->SetMarkerStyle(21);   gr_kaonyield->SetMarkerColor(kaoncolor);    gr_kaonyield->Draw("P");
+  if(fireACC==0) { gr_kaonyield->SetMarkerSize(YieldMarkerSize); gr_kaonyield->SetMarkerStyle(21);   gr_kaonyield->SetMarkerColor(kaoncolor);    gr_kaonyield->Draw("P"); }
   v2fit->SetLineColor(kaoncolor);	v2fit->SetLineWidth(4);
   gr_kaonyield->Fit("v2fit","Q","",0.05,M_PI-0.05);
   if(ich==0) { parfile << "v2kaonneg[" << ptbin << "] = " << v2fit->GetParameter(0) << "; \t\t v2errkaonneg[" << ptbin << "] = " << v2fit->GetParError(0) << ";" << endl; }
@@ -307,7 +307,7 @@ void CheckFitsEP(int itof, int icent, int ich, float ptrange[])
   sprintf(titlestring,"Proton Yield (GeV/c^{2}), %g<pT<%g",ptrange[0],ptrange[1]);
   drawTitle(.1,-.07,titlestring+lcomma+tofstring+lcomma+centbinlabel[icent+1]+centrality+lcomma+chargelabel[ich]+tracks,1,12,.03,0);
   if(delPointProt>0) gr_protyield->RemovePoint(delPointProt-1);
-  gr_protyield->SetMarkerSize(YieldMarkerSize); gr_protyield->SetMarkerStyle(21);   gr_protyield->SetMarkerColor(protcolor);    gr_protyield->Draw("P");
+  if(fireACC==0) { gr_protyield->SetMarkerSize(YieldMarkerSize); gr_protyield->SetMarkerStyle(21);   gr_protyield->SetMarkerColor(protcolor);    gr_protyield->Draw("P"); }
   v2fit->SetLineColor(protcolor);	v2fit->SetLineWidth(4);
   gr_protyield->Fit("v2fit","Q","",0.05,M_PI-0.05);
   if(ich==0) { parfile << "v2protneg[" << ptbin << "] = " << v2fit->GetParameter(0) << ";\t\t v2errprotneg[" << ptbin << "] = " << v2fit->GetParError(0) << ";" << endl; }
@@ -2009,7 +2009,24 @@ TCanvas * fitFixedParkprot(TH1D * h, int whichtof, int centbin, int charge, int 
     float prot2 =  0.0832996;  
   }
 
+  if(ptrange[0] == 4.0 && ich==0) {
 
+    float pion1 = -0.0204344;  
+    float pion2 =  0.156231 ;  
+    float kaon1 =  0.100432 ;  
+    float kaon2 =  0.298941 ;  
+    float prot1 =  0.959178 ;  
+    float prot2 =  0.00550124;  
+  }
+
+  if(ptrange[0] == 4.0 && ich==1) {
+    float pion1 = -0.0204344;  
+    float pion2 =  0.156231 ;  
+    float kaon1 =  0.168138 ;  
+    float kaon2 =  0.176722 ;  
+    float prot1 =  0.849773 ;  
+    float prot2 =  0.0832996;  
+  }
 
   float pionyield[4]; float pionyielderr[4];
   float kaonyield[4]; float kaonyielderr[4];
@@ -2212,12 +2229,12 @@ TCanvas * fitFixedParkprot(TH1D * h, int whichtof, int centbin, int charge, int 
     fun_proton->SetParameter(1, fun->GetParameter(4)); 
     fun_proton->SetParameter(2, fun->GetParameter(5)+fun->GetParameter(2)); 
 
+    fun->SetParameter(0,fun_kaon->GetParameter(0));
+    fun->SetParameter(3,fun_proton->GetParameter(0));
 /*
    
-    fun->SetParameter(0,fun_kaon->GetParameter(0));
     fun->SetParameter(1,kaon1); //mean
     fun->SetParameter(2,kaon2); //sigma 
-    fun->SetParameter(3,fun_proton->GetParameter(0));
     fun->SetParameter(4,prot1); 
     fun->SetParameter(5,prot2);  //old
     //fun->SetParameter(5,tuneprotwidth[idphi]*fabs(fun_proton->GetParameter(2)-fun_kaon->GetParameter(2)));  //allows protons to be narrower than kaons
