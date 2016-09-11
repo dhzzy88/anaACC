@@ -1567,7 +1567,6 @@ TCanvas * fit_m2_kprot(TH1D * h, int whichtof, int centbin, int charge, int idph
 
     h->Fit("fun2","RQ0N","same");
 
-
     //**********************************
     //Set initial parameters for the kaon
     //**********************************
@@ -1611,6 +1610,7 @@ TCanvas * fit_m2_kprot(TH1D * h, int whichtof, int centbin, int charge, int idph
       fun_proton->SetParError(ipar,  fun2->GetParError(ipar)); 
     }
 
+    cout << fun_proton->GetParameter(1) << "asdgfsadglkdg;jaasdfasdfasdfasdfasdfasdfadsfasDF" <<endl;
     //cout << fun_proton->GetParameter(0) << endl;
           
     if(idphi==0) {
@@ -1992,13 +1992,13 @@ float justCount(TH1D * h, float thresh, int upordown) {
 
 TCanvas * fitFixedParkprot(TH1D * h, int whichtof, int centbin, int charge, int idphi, float ptrange[])
 {
-  if(ptrange[0] == 3.5 && ich==0) {
+  if(ptbin == 13 && ich==0) {
     float pion1 = -0.00461841;  
-    float pion2 = 0.176268   ;  
-    float kaon1 = 0.199047   ;  
-    float kaon2 = 0.171694   ;  
-    float prot1 = 0.863529   ;  
-    float prot2 = 0.126773   ;  
+    float pion2 = 0.176268   ; 
+    float kaon1 = 0.163188   ;  
+    float kaon2 = 0.236951   ;  
+    float prot1 = 0.868735   ;  
+    float prot2 = 0.00850419 ;  
   }
   if(ptrange[0] == 3.5 && ich==1) {
     float pion1 = -0.0204344;  

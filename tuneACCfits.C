@@ -36,8 +36,10 @@ void tuneACCfits()
   importfromStruct(fitTuning);
 
   if(ptbin< 12) { float ptrange[2] = {0.5+ptbin*0.2,0.5+(ptbin+1)*0.2};        }
-  if(ptbin>=12) { float ptrange[2] = {3.0+(ptbin-12)*0.5,3.0+(ptbin-11)*0.5};  }
-  if(ptbin>=15) { float ptrange[2] = {4.5+(ptbin-15),4.5+(ptbin-14)};  }
+  if(ptbin==13) { float ptrange[2] = {2.9,3.5};  }
+  if(ptbin==14) { float ptrange[2] = {3.5,3.9};  }
+  if(ptbin==15) { float ptrange[2] = {3.9,4.5};  }
+  //if(ptbin>=15) { float ptrange[2] = {4.5+(ptbin-15),4.5+(ptbin-14)};  }
   char titlestring[128];
   if(fireACC == 0) {
     sprintf(titlestring,"chkparams/parbkup/v2Par_tof%i_cent%i_ch%i_pT-%g-%g.txt",itof,icent,ich,ptrange[0]*10,ptrange[1]*10);
@@ -80,9 +82,22 @@ void tuneACCfits()
   char titlestring[128];
   for(int idphi=0; idphi<=5;idphi++) {
     float accthresh = setACCthresh(ptbin);
+    
     sprintf(getHistName,"h_m2tofvsacc_icent%i_ich%i_idphi%i_pt%i",icent,ich,idphi,ptbin);
     cout << "getting histogram: " << getHistName << endl;
     h_nphotvsm2[icent][idphi][ptbin] = (TH2F*)inFile.Get(getHistName);
+    if(ptbin>=13) {
+      sprintf(getHistName,"h_m2tofvsacc_icent%i_ich%i_idphi%i_pt%i",icent,ich,idphi,ptbin+1);
+      cout << "adding histogram (hi pT): " << getHistName << endl;
+      TH2F * h_nphotvsm2_1 = (TH2F*)inFile.Get(getHistName);
+      sprintf(getHistName,"h_m2tofvsacc_icent%i_ich%i_idphi%i_pt%i",icent,ich,idphi,ptbin+2);
+      cout << "adding histogram (hi pT): " << getHistName << endl;
+      TH2F * h_nphotvsm2_2 = (TH2F*)inFile.Get(getHistName);
+      h_nphotvsm2[icent][idphi][ptbin]->Add(h_nphotvsm2_1);
+      h_nphotvsm2[icent][idphi][ptbin]->Add(h_nphotvsm2_2);
+    }
+    //cout << h_nphotvsm2[icent][idphi][ptbin]->GetTitle() << endl; 
+
     if(runnoEP==1) continue;
     //c_nphot->cd(ptbin+1);
     //h_nphotvsm2[icent][idphi][ptbin]->Draw();
@@ -115,6 +130,8 @@ if(runnoEP==0) {
   sprintf(titlestring,"2x3/PSm2_cent%i_ich%i_accfire%i_ptbin%i.jpg",icent,ich,fireACC,ptbin);
   c_PS->SaveAs(titlestring);
 }
+
+
   if(runnoEP==1) idphi=4;
   TH2F *h_all = (TH2F*)h_nphotvsm2[0][0][ptbin]->Clone("h_all");
   h_all->Add(h_nphotvsm2[0][1][ptbin]);

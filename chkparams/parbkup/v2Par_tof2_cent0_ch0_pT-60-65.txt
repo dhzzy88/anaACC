@@ -31,7 +31,7 @@ v2protneg[18] = 0.0558103;		 v2errprotneg[18] = 0.0103716;
 
 
 
-float ptrange[2] = {4,4.5};
+float ptrange[2] = {6,6.5};
 int ptbin = 18;
 int    Nrebin            = 5;
 int    kUseLogLowBins    = 0;

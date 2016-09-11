@@ -31,7 +31,7 @@ parstruct loadFitParamsnoEP() {
   parstruct fitTuning;
   if(ptbin==13 && ich==0) {
     cout << "Loading params for ptbin " << ptbin << " with fireACC: " << fireACC << " FOR NO EP..." << endl;
-    float ptrange[2] = {3.5,4};
+    float ptrange[2] = {2.9,3.5};
     int    Nrebin            = 1;
     int    kUseLogLowBins    = 0;
     int    twogausfit        = 1;
@@ -43,19 +43,19 @@ parstruct loadFitParamsnoEP() {
     float  protmeanrange[2]  = {0.8,0.95};
     float  pionwidthrange[2] = {0.1,0.5};
     float  kaonwidthrange[2] = {0.1,0.1};
-    float  protwidthrange[2] = {0.000001,0.00001};
+    float  protwidthrange[2] = {0.01,0.1};
     float  pionfitrange[2]   = {-0.1,0.2};
     float  kaonfitrange[2]   = {-0.1,0.4};
-    float  protfitrange[2]   = {0.5,1.1};
-    float tunepionheight[6] = {1,1,1,1,1,1};
-    float tunepionwidth[6]  = {1,1,1,1,0.95,1};
-    float tunepionmean[6]   = {0,0,0,0,0,0};
-    float tunekaonheight[6] = {1,1,1,1,1.05,1};
-    float tunekaonwidth[6]  = {1,1,1,1,0.95,1};
-    float tunekaonmean[6]   = {0,0,0,0,0.1,0};
-    float tuneprotheight[6] = {1,1,1,1,.0013,1};
-    float tuneprotwidth[6]  = {1,1,1,1,.018,1};
-    float tuneprotmean[6]   = {0,0,0,0,0.05,0};
+    float  protfitrange[2]   = {0.6,1.3};
+    //float tunepionheight[6] = {1,1,1,1,1,1};
+    //float tunepionwidth[6]  = {1,1,1,1,0.95,1};
+    //float tunepionmean[6]   = {0,0,0,0,0,0};
+    float tunekaonheight[6] = {1,1,1,1,0.54,1};
+    float tunekaonwidth[6]  = {1,1,1,1,0.37,1};
+    float tunekaonmean[6]   = {0,0,0,0,-0.12,0};
+    float tuneprotheight[6] = {1,1,1,1,.00000017,1};
+    float tuneprotwidth[6]  = {1,1,1,1,0.00002,1};
+    float tuneprotmean[6]   = {0,0,0,0,-0.05,0};
   }
 
   if(ptbin==14 && ich==0) {
